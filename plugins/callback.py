@@ -166,3 +166,18 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 ]
             )
         )
+        except:
+            pass
+    elif query.data=="help":
+        buttons = [
+            [
+                InlineKeyboardButton('Test', callback_data="1"),
+                InlineKeyboardButton('Test', callback_data="2"),
+            ]
+            ]
+        reply_markup = InlineKeyboardMarkup(buttons)
+        await query.edit_message_text(
+            HELP,
+            reply_markup=reply_markup
+
+        )
