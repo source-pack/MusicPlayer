@@ -28,37 +28,37 @@ playlist=Config.playlist
 
 HELP = """
 
-<b>Add the bot and User account in your Group with admin rights.
+<b> ربات و یوزر اکانت را به گروهتون اضافه کنید
 
-Start a VoiceChat
+ویس چت (vc) را آغاز کنید
 
-Use /play <song name> or use /play as a reply to an audio file or youtube link.
+با استفاده از `/play` <song name> یا با ریپلای کردن `/play` رو یک لینک یوتوب و یا فایل آن را پلی کنید.
 
-You can also use /dplay <song name> to play a song from Deezer.</b>
+همیچنین می توانید با `/dplay <song name>` از Deezer آهنگ خود را پخش کنید.</b>
 
-**Common Commands**:
+**دستورات اولیه**:
 
-**/play**  Reply to an audio file or YouTube link to play it or use /play <song name>.
-**/dplay** Play music from Deezer, Use /dplay <song name>
-**/player**  Show current playing song.
-**/help** Show help for commands
-**/playlist** Shows the playlist.
+`/play`  رو یک فایل صوتی ریلای کنید یا به صورت /play <song name> استفاده کنید.
+`/dplay` رو یک لینک دیزر ریپلا کنید , همچنین می توانید /dplay <song name>
+`/player`  موزیک در حال پخش را به شما نشان می دهد.
+`/help` 
+`/playlist` پلی لیست نشان داده می شود.
 
-**Admin Commands**:
-**/skip** [n] ...  Skip current or n where n >= 2
-**/join**  Join voice chat.
-**/leave**  Leave current voice chat
-**/vc**  Check which VC is joined.
-**/stop**  Stop playing.
-**/radio** Start Radio.
-**/stopradio** Stops Radio Stream.
-**/replay**  Play from the beginning.
-**/clean** Remove unused RAW PCM files.
-**/pause** Pause playing.
-**/resume** Resume playing.
-**/mute**  Mute in VC.
-**/unmute**  Unmute in VC.
-**/restart** Restarts the Bot.
+**دستورات ادمین**:
+`/skip` [n] ...  رد کردن آهنگ فعلی یا n >= 2 تا آهنگ
+`/join`  به VC جوین می شود.
+`/leave`  از ویس چت فعلی خارج می شود
+`/vc`  در کدام ویس چت است؟
+`/stop`  توقف
+`/radio` شروع کردن رادیو
+`/stopradio` متوقف کردن استریم رادیو
+`/replay` پخش کردن از اول
+`/clean` پاک سازی
+`/pause` مکث
+`/resume` ادامه
+`/mute`  سکوت در ویس چت
+`/unmute`  با صدا
+`/restart` ری استارت کردن ربات
 """
 
 
@@ -90,9 +90,9 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 reply_markup=InlineKeyboardMarkup(
                     [
                         [
-                            InlineKeyboardButton("🔄", callback_data="replay"),
-                            InlineKeyboardButton("⏯", callback_data="pause"),
-                            InlineKeyboardButton("⏩", callback_data="skip")
+                            InlineKeyboardButton("🔄", callback_data="پخش مجدد"),
+                            InlineKeyboardButton("⏯", callback_data="مکث"),
+                            InlineKeyboardButton("⏩", callback_data="رد کردن")
                             
                         ],
                     ]
@@ -112,9 +112,9 @@ async def cb_handler(client: Client, query: CallbackQuery):
         reply_markup=InlineKeyboardMarkup(
                     [
                         [
-                            InlineKeyboardButton("🔄", callback_data="replay"),
-                            InlineKeyboardButton("⏯", callback_data="resume"),
-                            InlineKeyboardButton("⏩", callback_data="skip")
+                            InlineKeyboardButton("🔄", callback_data="پخش مجدد"),
+                            InlineKeyboardButton("⏯", callback_data="ادامه"),
+                            InlineKeyboardButton("⏩", callback_data="رد کردن")
                             
                         ],
                     ]
@@ -135,9 +135,9 @@ async def cb_handler(client: Client, query: CallbackQuery):
         reply_markup=InlineKeyboardMarkup(
                     [
                         [
-                            InlineKeyboardButton("🔄", callback_data="replay"),
-                            InlineKeyboardButton("⏯", callback_data="pause"),
-                            InlineKeyboardButton("⏩", callback_data="skip")
+                            InlineKeyboardButton("🔄", callback_data="پخش کردن"),
+                            InlineKeyboardButton("⏯", callback_data="مکث"),
+                            InlineKeyboardButton("⏩", callback_data="رد کردن")
                             
                         ],
                     ]
@@ -158,31 +158,11 @@ async def cb_handler(client: Client, query: CallbackQuery):
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
-                        InlineKeyboardButton("🔄", callback_data="replay"),
-                        InlineKeyboardButton("⏯", callback_data="pause"),
-                        InlineKeyboardButton("⏩", callback_data="skip")
+                        InlineKeyboardButton("🔄", callback_data="پخش مجدد"),
+                        InlineKeyboardButton("⏯", callback_data="مکث"),
+                        InlineKeyboardButton("⏩", callback_data="رد کردن")
                             
                     ],
                 ]
             )
         )
-        except:
-            pass
-    elif query.data=="help":
-        buttons = [
-            [
-                InlineKeyboardButton('⚙️ Update Channel', url='https://t.me/subin_works'),
-                InlineKeyboardButton('🤖 Other Bots', url='https://t.me/subin_works/122'),
-            ],
-            [
-                InlineKeyboardButton('👨🏼‍💻 Developer', url='https://t.me/subinps'),
-                InlineKeyboardButton('🧩 Source', url='https://github.com/subinps/MusicPlayer'),
-            ]
-            ]
-        reply_markup = InlineKeyboardMarkup(buttons)
-        await query.edit_message_text(
-            HELP,
-            reply_markup=reply_markup
-
-        )
-
