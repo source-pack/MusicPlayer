@@ -77,7 +77,7 @@ async def yplay(_, message: Message):
                 type="query"
                 ysearch=query
         else:
-            await message.reply_text("You Didn't gave me anything to play. Send me a audio file or reply /play to an audio file.")
+            await message.reply_text("داش چیزی واسه پلی ندادی که")
             return
     if 1 in RADIO:
         await mp.stop_radio()
@@ -87,19 +87,19 @@ async def yplay(_, message: Message):
         await mp.start_call()
     if type=="audio":
         if round(m_audio.audio.duration / 60) > DURATION_LIMIT:
-            await message.reply_text(f"❌ Videos longer than {DURATION_LIMIT} minute(s) aren't allowed, the provided video is {round(m_audio.audio.duration/60)} minute(s)")
+            await message.reply_text(f"❌ ویدیو طولانی تر از {DURATION_LIMIT} دقیقه نمی شه, زمان ویدیو شما {round(m_audio.audio.duration/60)} دقیقه است")
             return
         if not group_call.is_connected:
             await mp.start_call()
         if playlist and playlist[-1][2] \
                 == m_audio.audio.file_id:
-            await message.reply_text(f"{emoji.ROBOT} Already added in Playlist")
+            await message.reply_text(f"{emoji.ROBOT} حاجی قبلا به لیست پخش اضافه شده که")
             return
         data={1:m_audio.audio.title, 2:m_audio.audio.file_id, 3:"telegram", 4:user}
         playlist.append(data)
         if len(playlist) == 1:
             m_status = await message.reply_text(
-                f"{emoji.INBOX_TRAY} Downloading and Processing..."
+                f"{emoji.INBOX_TRAY} مشقول دانلود و سایر فرایندها هستیم..."
             )
             await mp.download_audio(playlist[0])
             file=playlist[0][1]
